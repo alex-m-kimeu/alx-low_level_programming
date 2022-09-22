@@ -8,7 +8,7 @@
  * Return: nothing
  */
 
-void print_array(int *a, int n)
+void reverse_array(int *a, int n)
 {
 	int i, temp;
 
@@ -16,6 +16,6 @@ void print_array(int *a, int n)
 	{
 		temp = a[i];
 		a[i] = a[n - 1 - i];
-		a[i - 1 - i] = temp;
+		a[n - 1 - i] = temp;
 	}
 }
