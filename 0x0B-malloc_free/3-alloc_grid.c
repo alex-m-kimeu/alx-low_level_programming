@@ -8,6 +8,7 @@
 * Return: NULL or pointer to array
 */
 
+int **alloc_grid(int width, int height)
 {
 	int **array;
 	int i, j;
