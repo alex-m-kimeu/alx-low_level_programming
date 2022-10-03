@@ -10,36 +10,40 @@
 
 char *argstostr(int ac, char **av)
 {
-	int i, j, k, len;
-	char *str;
+	char *word;
+	int num1, num2, num3, num4;
 
-	if (ac == 0 || av == NULL)
+	if (ac == 0)
 		return (NULL);
 
-	for (i = 0; i < ac; i++)
+	for (num1 = num2 = 0; num2 < ac; num2++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
-			len++;
-		len++;
+		if (av[num2] == NULL)
+			return (NULL);
+
+		for (num3 = 0; av[num2][num3] != '\0'; num3++)
+			num1++;
+		num1++;
 	}
+	word = malloc(sizeof(char) * (num1 + 1));
 
-	str = malloc(sizeof(char) * (len + 1));
-
-	if (str == NULL)
-		return (NULL);
-
-	k = 0;
-
-	for (i = 0; i < ac; i++)
+	if (word == NULL)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
+		free(word);
+		return (NULL);
+	}
+	for (num2 = num3 = num4 = 0; num4 < num1; num3++, num4++)
+	{
+		if (av[num2][num3] == '\0')
 		{
-			str[k] = av[i][j];
-			k++;
+			word[num4] = '\n';
+			num2++;
+			num4++;
+			num3 = 0;
 		}
-		str[k] = '\n';
-		k++;
+		if (num4 < num1 - 1)
+			word[num4] = av[num2][num3];
 	}
-
-	return (str);
+	word[num4] = '\0';
+	return (word);
 }
